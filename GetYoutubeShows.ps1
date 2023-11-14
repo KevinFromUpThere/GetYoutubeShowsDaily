@@ -35,11 +35,13 @@ If (Test-Path .\archive.txt) {
             --write-description `
             --embed-chapters `
             --embed-metadata  `
-             archive.txt "https://www.youtube.com/$i" `
+             --download-archive archive.txt `
+             "https://www.youtube.com/$i" `
              -o "/Talk Shows/%(uploader)s/%(playlist_index)s - %(title)s [%(id)s].%(ext)s" `
              -o "thumbnail:/Talk Shows/%(uploader)s/%(playlist_index)s - %(title)s [%(id)s]\poster.jpg" 
         }    
 } else {
+        Write-Host "No Archive exists - Building Archive of Pre-existing Videos.  This won't download anything until there's new content."    
         foreach ($i in $showList)
             {
                 #Build the do-not-download list
